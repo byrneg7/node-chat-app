@@ -18,14 +18,13 @@ app.use(express.static(publicPath));
 io.on('connection', (socket) => { //the event passes clients socket as an argument 
   console.log('New user connected');
 
-  socket.emit('newMessage', {
-    from: "greg@example.com",
-    text: "Hey. What's up?",
-    createdAt: new Date().getTime()
-  });
-
   socket.on('createMessage', (message) => {
-    console.log('Message received', message);
+    console.log('Message receiveddd', message);
+    io.emit('newMessage', {
+      from: message.from,
+      text: message.text,
+      createdAt: new Date().getTime()
+    });
   });
 
   socket.on('disconnect', () => {

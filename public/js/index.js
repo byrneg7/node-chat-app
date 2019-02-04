@@ -6,13 +6,8 @@ socket.on('connect', function () {
     console.log('connected to server');
 });
 
-socket.emit('createMessage', {
-    from: 'Greg',
-    text: 'Hey. This is Greg'
-});
-
 socket.on('newMessage', function (message) {
-    console.log('new message received: ', message);
+    console.log('new message: ', message);
 });
 
 socket.on('disconnect', function () {
