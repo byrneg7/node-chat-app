@@ -8,15 +8,19 @@
 
 <body>
     <p>Welcome to Greg's chat app</p>
-    <ol id='messages'></ol>
+    <ul id='messages'></ul>
     <form id="message-form">
         <input name="message" type="text" placeholder="Message" />
         <button>Send</button>
     </form>
-
+    
+    <button id='send-location'>Send location</button>
+    
     <script src="/socket.io/socket.io.js"></script>
     <!--access to socket.io library-->
+    
     <script src="js/libs/jquery.js"></script>
+    
     <script src="js/index.js"></script>
 
 </body>
