@@ -28,7 +28,7 @@ io.on('connection', (socket) => { //the event passes clients socket as an argume
   socket.on('createMessage', (message, callback) => {
     console.log('Message received', message);
     io.emit('newMessage', generateMessage(message.from, message.text));
-    callback('This is from the server');
+    callback();
   });
 
   socket.on('createLocationMessage', (coords) => {
