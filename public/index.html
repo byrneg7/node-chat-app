@@ -7,11 +7,16 @@
 </head>
 
 <body>
-    <h1>Hello world</h1>
-    <p>Welcome to the chat app</p>
+    <p>Welcome to Greg's chat app</p>
+    <ol id='messages'></ol>
+    <form id="message-form">
+        <input name="message" type="text" placeholder="Message" />
+        <button>Send</button>
+    </form>
 
     <script src="/socket.io/socket.io.js"></script>
     <!--access to socket.io library-->
+    <script src="js/libs/jquery.js"></script>
     <script src="js/index.js"></script>
 
 </body>
