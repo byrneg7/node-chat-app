@@ -19,7 +19,16 @@ function scrollToBottom() {
 }
 
 socket.on('connect', function () {
-    console.log('connected to server');
+    var params = jQuery.deparam(window.location.search);
+
+    socket.emit('join', params, function (err) {
+        if (err) {
+            alert(err);
+            window.location.href = '/'; //redirect user to root directory
+        } else {
+            console.log('No error');
+        }
+    });
 });
 
 socket.on('newUser', function (message) {
@@ -52,11 +61,19 @@ socket.on('newLocationMessage', function (message) {
     scrollToBottom();
 });
 
-
 socket.on('disconnect', function () {
     console.log('Disconnected from server');
 });
 
+socket.on('updateUserList', function (users) {
+    var ol = jQuery('<ol></ol>');
+
+    users.forEach(function (user) {
+        ol.append(jQuery('<li></li>').text(user));
+    });
+
+    jQuery('#users').html(ol);
+});
 
 jQuery('#message-form').on('submit', function (e) {
     e.preventDefault();
