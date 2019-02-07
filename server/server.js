@@ -10,7 +10,6 @@ const { Users } = require('./utils/users');
 const publicPath = path.join(__dirname, '../public');
 const port = process.env.PORT || 3000
 
-
 var app = express();
 var server = http.createServer(app);
 var io = socketIO(server); //websockets server - emit or listen to events
@@ -34,6 +33,9 @@ io.on('connection', (socket) => { //the event passes clients socket as an argume
     }
 
     socket.join(params.room); //join a room with the input room name
+
+    //dropdown(params.room)
+
     users.removeUser(socket.id); //remove from any previous rooms 
     users.addUser(socket.id, params.name, params.room);
 
