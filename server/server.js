@@ -53,7 +53,8 @@ io.on('connection', (socket) => { //the event passes clients socket as an argume
   });
 
   socket.on('createLocationMessage', (coords) => {
-    io.emit('newLocationMessage', generateLocationMessage('Admin', coords.latitude, coords.longitude));
+    var user = users.getUser(socket.id);
+    io.emit('newLocationMessage', generateLocationMessage(user.name, coords.latitude, coords.longitude));
   });
 
   socket.on('disconnect', () => {

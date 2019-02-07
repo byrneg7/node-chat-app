@@ -35,12 +35,12 @@ socket.on('newUser', function (message) {
     console.log(message)
 });
 
-socket.on('newMessage', function (message) {
+socket.on('newMessage', function (name, message) {
     var formattedTime = moment(message.createdAt).format('h:mm a');
     var template = jQuery('#message-template').html();
     var html = Mustache.render(template, {
         text: message.text,
-        from: message.from,
+        from: name,
         createdAt: formattedTime
     });
 
@@ -48,12 +48,12 @@ socket.on('newMessage', function (message) {
     scrollToBottom();
 });
 
-socket.on('newLocationMessage', function (message) {
+socket.on('newLocationMessage', function (name, message) {
     var formattedTime = moment(message.createdAt).format('h:mm a');
     var template = jQuery('#location-message-template').html();
     var html = Mustache.render(template, {
         url: message.url,
-        from: message.from,
+        from: name,
         createdAt: formattedTime
     });
 
